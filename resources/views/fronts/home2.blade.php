@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crystal Model Schools - We Learn To Excel</title>
+    <title>Al-Ihsan Schools - Pursuit of Excellence in Learning and Living</title>
 
     <!-- Google Fonts -->
     <link
@@ -188,56 +188,71 @@
             color: var(--primary-color);
         }
 
-        /* Hero Section */
+        /* Hero Section with Carousel */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') center/cover no-repeat;
-            display: flex;
-            align-items: center;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        .carousel {
             position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, rgba(67, 97, 238, 0.1), rgba(247, 37, 133, 0.1));
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
         }
 
-        .hero::after {
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide::after {
             content: '';
             position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, rgba(255, 190, 11, 0.1), rgba(76, 201, 240, 0.1));
-            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
         }
 
         .hero-content {
-            max-width: 800px;
+            position: relative;
             z-index: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content-inner {
+            max-width: 800px;
         }
 
         .hero-content h2 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            color: var(--primary-color);
+            color: white;
             animation: bounceIn 1s ease;
         }
 
         .hero-content p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
-            color: var(--dark-color);
+            color: white;
             animation: fadeInUp 1s ease 0.2s;
             animation-fill-mode: both;
         }
@@ -267,15 +282,69 @@
 
         .btn-outline {
             background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
+            color: white;
+            border: 2px solid white;
             box-shadow: none;
         }
 
         .btn-outline:hover {
-            background: var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            box-shadow: 0 7px 20px rgba(255, 255, 255, 0.4);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-indicator.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .carousel-control {
+            background: rgba(255, 255, 255, 0.2);
             color: white;
-            box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .carousel-control:hover {
+            background: rgba(255, 255, 255, 0.4);
         }
 
         /* Floating Elements */
@@ -1495,6 +1564,15 @@
             .modal.show .modal-content {
                 transform: translateY(0);
             }
+            
+            .carousel-controls {
+                padding: 0 1rem;
+            }
+            
+            .carousel-control {
+                width: 40px;
+                height: 40px;
+            }
         }
     </style>
 </head>
@@ -1505,8 +1583,8 @@
         <div class="header-top">
             <div class="container">
                 <div class="contact-info">
-                    <span><i class="fas fa-phone"></i> 08065136880, </span>
-                    <span><i class="fas fa-envelope"></i> info@crystalmodelschools.edu.ng</span>
+                    <span><i class="fas fa-phone"></i> 08064220278, 08140612026</span>
+                    <span><i class="fas fa-envelope"></i> info@alihsanschools.edu.ng</span>
                 </div>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -1519,11 +1597,8 @@
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <!-- Placeholder for school logo -->
-                    {{-- <div style="width: 60px; height: 60px; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">MDS</div> --}}
-                    <img src="{{ asset('school-images/crystal_logo.png') }}"
-                        style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%;" />
-                    <h1>Crystal <span>Model</span> Schools</h1>
+                    <img src="{{ asset('school-images/logo_alihsan.png') }}" alt="Al-Ihsan Schools Logo" />
+                    <h1>Al-Ihsan <span>Schools</span></h1>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#" class="nav-link" data-page="home">Home</a></li>
@@ -1542,20 +1617,39 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Carousel -->
     <section class="hero">
+        <div class="carousel">
+            <div class="carousel-slide active" style="background-image: url('{{ asset('school-images/chem_lab.png') }}');"></div>
+            <div class="carousel-slide" style="background-image: url('{{ asset('school-images/ict_lab.jpg') }}');"></div>
+            <div class="carousel-slide" style="background-image: url('{{ asset('school-images/ceo.png') }}');"></div>
+        </div>
         <div class="floating-element"></div>
         <div class="floating-element"></div>
         <div class="floating-element"></div>
         <div class="floating-element"></div>
         <div class="container">
             <div class="hero-content">
-                <h2>We Learn To Excel</h2>
-                <p>A world-class standard school with diversity in learning, grooming students from kindergarten to
-                    secondary education with a focus on e-learning and computer-based training.</p>
-                <button class="btn" id="joinFamilyBtn">Join Our Family</button>
-                <button class="btn btn-outline" id="scheduleVisitBtn">Schedule a Visit</button>
+                <div class="hero-content-inner">
+                    <h2>Pursuit of Excellence in Learning and Living</h2>
+                    <p>An Islamic faith-based Nursery, Elementary and Secondary school providing all-round high quality education of international standard with focus on spiritual and moral development.</p>
+                    <button class="btn" id="joinFamilyBtn">Join Our Family</button>
+                    <button class="btn btn-outline" id="scheduleVisitBtn">Schedule a Visit</button>
+                </div>
             </div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-control" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-control" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="carousel-indicators">
+            <span class="carousel-indicator active" data-index="0"></span>
+            <span class="carousel-indicator" data-index="1"></span>
+            <span class="carousel-indicator" data-index="2"></span>
         </div>
     </section>
 
@@ -1563,21 +1657,17 @@
     <section class="welcome">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Welcome to Crystal Model Schools</h2>
+                <h2>Welcome to Al-Ihsan Schools</h2>
             </div>
             <div class="welcome-content">
                 <div class="welcome-text" data-aos="fade-right">
                     <h3>A Place Where Every Child Learns to Excel</h3>
-                    <p>At Crystal Model Schools, we are passionate about providing a good standard education and
-                        eradicating examination malpractice in our society. We discovered the decay in our education
-                        system and are committed to grooming children from all classes with a solid foundation.</p>
-                    <p>We are currently implementing E-Learning in our school to prepare our students for a world that
-                        is switching to computer-based testing for all external examinations.</p>
+                    <p>Al-Ihsan Schools is an Islamic faith-based Nursery, Elementary and Secondary school whose mission is to provide an all-round high quality education of international standard. Our motto is the pursuit of excellence in learning and in living.</p>
+                    <p>Being a faith-based educational institution, our focus is not only on the academic but also on the spiritual and moral development and growth of our students and pupils. Our goal is the development of the whole person, a well-rounded person who would be future leaders of the nation.</p>
                     <button class="btn" id="discoverStoryBtn">Discover Our Story</button>
                 </div>
                 <div class="welcome-image" data-aos="fade-left">
-                    <img src="{{asset('school-images/ceo.jpeg')}}"
-                        alt="CEO of Crystal Model Schools">
+                    <img src="{{ asset('school-images/ceo.webp') }}" alt="Proprietress of Al-Ihsan Schools">
                 </div>
             </div>
         </div>
@@ -1594,18 +1684,16 @@
                     <div class="age-icon">
                         <i class="fas fa-baby"></i>
                     </div>
-                    <h3>Kindergarten</h3>
-                    <p>KG1-KG3: Building strong foundations through play-based learning and structured activities that
-                        foster curiosity and creativity.</p>
+                    <h3>Nursery</h3>
+                    <p>Early childhood education focusing on foundational skills, creativity, and character development in a nurturing Islamic environment.</p>
                     <button class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Learn More</button>
                 </div>
                 <div class="age-card" data-aos="fade-up" data-aos-delay="200" data-age="primary">
                     <div class="age-icon">
                         <i class="fas fa-child"></i>
                     </div>
-                    <h3>Primary</h3>
-                    <p>Basic 1-5: Developing academic excellence, critical thinking, and character through a
-                        comprehensive curriculum.</p>
+                    <h3>Elementary</h3>
+                    <p>Developing academic excellence, critical thinking, and Islamic values through a comprehensive curriculum and practical application.</p>
                     <button class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Learn More</button>
                 </div>
                 <div class="age-card" data-aos="fade-up" data-aos-delay="300" data-age="junior-secondary">
@@ -1613,8 +1701,7 @@
                         <i class="fas fa-user-graduate"></i>
                     </div>
                     <h3>Junior Secondary</h3>
-                    <p>3-year program: Preparing students for senior secondary with a broad-based curriculum and
-                        foundational knowledge.</p>
+                    <p>3-year program: Preparing students for senior secondary with a broad-based curriculum that includes Islamic sciences.</p>
                     <button class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Learn More</button>
                 </div>
                 <div class="age-card" data-aos="fade-up" data-aos-delay="400" data-age="senior-secondary">
@@ -1622,8 +1709,7 @@
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <h3>Senior Secondary</h3>
-                    <p>3-year program: Specialized programs preparing students for higher education and career paths
-                        with advanced academic opportunities.</p>
+                    <p>3-year program: Specialized programs preparing students for higher education with a focus on both academic and Islamic education.</p>
                     <button class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Learn More</button>
                 </div>
             </div>
@@ -1639,46 +1725,40 @@
             <div class="programs-container">
                 <div class="program-card" data-aos="fade-up" data-aos-delay="100" data-program="stem">
                     <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                            alt="E-Learning">
+                        <img src="{{ asset('school-images/ict_lab.jpg') }}" alt="ICT Lab">
                     </div>
                     <div class="card-content">
-                        <h3>E-Learning & CBT</h3>
-                        <p>Preparing students for the digital age with computer-based training and e-learning platforms,
-                            ensuring they're ready for all external CBT examinations.</p>
+                        <h3>Integrated Curriculum</h3>
+                        <p>We operate an integrated curriculum which is holistic in nature and takes into account the intellectual, academic, spiritual, moral and physical growth of our students.</p>
                         <div>
-                            <span class="program-tag tag-academic">Technology</span>
-                            <span class="program-tag tag-creative">Innovation</span>
+                            <span class="program-tag tag-academic">Comprehensive</span>
+                            <span class="program-tag tag-creative">Balanced</span>
                         </div>
                     </div>
                 </div>
                 <div class="program-card" data-aos="fade-up" data-aos-delay="200" data-program="arts">
                     <div class="card-image">
-                        <img src="{{asset('school-images/compound.jpeg')}}"
-                            alt="World Class Education">
+                        <img src="{{ asset('school-images/chem_lab.jpg') }}" alt="Science Lab">
                     </div>
                     <div class="card-content">
-                        <h3>World Class Standards</h3>
-                        <p>Implementing world-class teaching methods and current revised curriculum to ensure our
-                            students can compete at any level globally.</p>
+                        <h3>Islamic Sciences</h3>
+                        <p>In addition to academic subjects, we offer classes in Qur'an, Quran memorization and recitation, tajweed, hadith, and Arabic to develop spiritual and moral values.</p>
                         <div>
-                            <span class="program-tag tag-creative">Excellence</span>
-                            <span class="program-tag tag-sports">Quality</span>
+                            <span class="program-tag tag-creative">Spiritual</span>
+                            <span class="program-tag tag-sports">Moral</span>
                         </div>
                     </div>
                 </div>
                 <div class="program-card" data-aos="fade-up" data-aos-delay="300" data-program="sports">
                     <div class="card-image">
-                        <img src="{{asset('school-images/bus.jpeg')}}"
-                            alt="Diverse Learning">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Sports">
                     </div>
                     <div class="card-content">
-                        <h3>Diverse Learning</h3>
-                        <p>Providing diversity in learning to create impactful students who are well-rounded and
-                            prepared for the challenges of the modern world.</p>
+                        <h3>Sports & Activities</h3>
+                        <p>We provide excellent sports facilities including football field, volleyball, table tennis, and track to ensure balanced physical development alongside academics.</p>
                         <div>
-                            <span class="program-tag tag-sports">Diversity</span>
-                            <span class="program-tag tag-academic">Impact</span>
+                            <span class="program-tag tag-sports">Physical</span>
+                            <span class="program-tag tag-academic">Development</span>
                         </div>
                     </div>
                 </div>
@@ -1695,23 +1775,23 @@
             <div class="fun-facts-container">
                 <div class="fun-fact" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-users"></i>
-                    <h3>500+</h3>
+                    <h3>200+</h3>
                     <p>Students</p>
                 </div>
                 <div class="fun-fact" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-chalkboard-teacher"></i>
-                    <h3>30+</h3>
+                    <h3>20+</h3>
                     <p>Dedicated Educators</p>
                 </div>
                 <div class="fun-fact" data-aos="fade-up" data-aos-delay="300">
                     <i class="fas fa-laptop"></i>
-                    <h3>100%</h3>
-                    <p>CBT Prepared</p>
+                    <h3>3</h3>
+                    <p>Science Labs</p>
                 </div>
                 <div class="fun-fact" data-aos="fade-up" data-aos-delay="400">
                     <i class="fas fa-trophy"></i>
-                    <h3>15+</h3>
-                    <p>Awards Won</p>
+                    <h3>5+</h3>
+                    <p>Years of Excellence</p>
                 </div>
             </div>
         </div>
@@ -1730,18 +1810,16 @@
                     </div>
                     <div class="activity-content">
                         <h3>Academic Excellence</h3>
-                        <p>We provide world-class teaching with a focus on the current revised curriculum, ensuring our
-                            students can compete at any level.</p>
+                        <p>We provide high quality education with a focus on the national curriculum integrated with Islamic values and perspectives.</p>
                     </div>
                 </div>
                 <div class="activity" data-aos="fade-left" data-activity="arts-center">
                     <div class="activity-icon">
-                        <i class="fas fa-laptop-code"></i>
+                        <i class="fas fa-heart"></i>
                     </div>
                     <div class="activity-content">
-                        <h3>E-Learning</h3>
-                        <p>We embrace technology with e-learning and computer-based training to prepare students for the
-                            digital future.</p>
+                        <h3>Spiritual Development</h3>
+                        <p>We focus on the spiritual and moral development of our students alongside their academic growth.</p>
                     </div>
                 </div>
                 <div class="activity" data-aos="fade-right" data-activity="library">
@@ -1749,19 +1827,67 @@
                         <i class="fas fa-handshake"></i>
                     </div>
                     <div class="activity-content">
-                        <h3>Integrity</h3>
-                        <p>We are committed to eradicating examination malpractice and promoting honest academic
-                            achievement.</p>
+                        <h3>Self-Discipline</h3>
+                        <p>We develop self-discipline in our students, giving them time to consider the effects of their actions and know right from wrong.</p>
                     </div>
                 </div>
                 <div class="activity" data-aos="fade-left" data-activity="playground">
                     <div class="activity-icon">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-users"></i>
                     </div>
                     <div class="activity-content">
-                        <h3>Passion for Education</h3>
-                        <p>We have a genuine passion for providing quality education to children from all backgrounds.
-                        </p>
+                        <h3>Community</h3>
+                        <p>Everyone feels safe, happy, and valued in our nurturing environment where students love to come to school.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section class="programs">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Our Facilities</h2>
+            </div>
+            <div class="programs-container">
+                <div class="program-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-image">
+                        <img src="{{ asset('school-images/chem_lab2.jpg') }}" alt="Science Laboratory">
+                    </div>
+                    <div class="card-content">
+                        <h3>Science Laboratories</h3>
+                        <p>Three state-of-the-art science laboratories for chemistry, biology, and physics/agriculture where students learn practical aspects of their lessons.</p>
+                        <div>
+                            <span class="program-tag tag-academic">Practical</span>
+                            <span class="program-tag tag-creative">Hands-on</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="program-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-image">
+                        <img src="{{ asset('school-images/ict_lab.jpg') }}" alt="ICT Lab">
+                    </div>
+                    <div class="card-content">
+                        <h3>Computer Laboratory</h3>
+                        <p>A computer laboratory available for students to practice and apply what is taught in the classroom with hands-on experience.</p>
+                        <div>
+                            <span class="program-tag tag-creative">Technology</span>
+                            <span class="program-tag tag-sports">Practical</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="program-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1128&q=80" alt="Library">
+                    </div>
+                    <div class="card-content">
+                        <h3>Library</h3>
+                        <p>A well-stocked library with books ranging from science, technology, business studies, history, literature, agriculture and more.</p>
+                        <div>
+                            <span class="program-tag tag-sports">Knowledge</span>
+                            <span class="program-tag tag-academic">Research</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1772,13 +1898,13 @@
     <section class="anthem-pledge">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>School Anthem</h2>
+                <h2>School Anthem & Philosophy</h2>
             </div>
             <div class="anthem-pledge-container">
                 <div class="anthem" data-aos="fade-right">
                     <h3>School Anthem</h3>
                     <div class="anthem-content">
-                        <p>Crystal Model Schools is the best school,<br>
+                        <p>Al-Ihsan Schools is the best school,<br>
                             is the best school in the world,<br>
                             greater heights and mind exploits<br>
                             is the portion of our school</p>
@@ -1788,12 +1914,12 @@
                             knowledge is light we learn to excel<br>
                             we are light and we shine bright</p>
 
-                        <p>Crystal Model Schools is the best school,<br>
+                        <p>Al-Ihsan Schools is the best school,<br>
                             is the best school in the world,<br>
                             greater heights and mind exploits<br>
                             is the portion of our school</p>
 
-                        <p>We are the learners of Crystal Model Schools,<br>
+                        <p>We are the learners of Al-Ihsan Schools,<br>
                             We are the learners of mercy dew,<br>
                             we learn and create peace of mind<br>
                             come to us you will know that we are good,<br>
@@ -1812,12 +1938,9 @@
                 <div class="pledge" data-aos="fade-left">
                     <h3>Our Philosophy</h3>
                     <div class="pledge-content">
-                        <p>At Crystal Model Schools, our philosophy is simple yet powerful: <strong>Our students are
-                                learning to excel</strong>.</p>
+                        <p>At Al-Ihsan Schools, our philosophy is simple yet powerful: <strong>Our students are learning to excel</strong>.</p>
 
-                        <p>This guiding principle shapes everything we do, from our curriculum design to our teaching
-                            methodologies. We believe that every child has the potential to achieve greatness when
-                            provided with the right environment, resources, and guidance.</p>
+                        <p>This guiding principle shapes everything we do, from our curriculum design to our teaching methodologies. We believe that every child has the potential to achieve greatness when provided with the right environment, resources, and guidance.</p>
 
                         <p>Our motto "WE LEARN TO EXCEL" reflects our commitment to:</p>
                         <ul>
@@ -1842,43 +1965,37 @@
             </div>
             <div class="testimonials-container">
                 <div class="testimonial active">
-                    <p class="testimonial-text">Crystal Model Schools has transformed my child's approach to learning.
-                        The focus on e-learning and computer-based training has prepared her for the digital age in ways
-                        I couldn't have imagined.</p>
+                    <p class="testimonial-text">Al-Ihsan Schools has provided my children with both academic excellence and strong moral values. The integration of Islamic education with the standard curriculum is exactly what we were looking for.</p>
                     <div class="testimonial-author">
                         <div class="author-image">
                             <img src="https://via.placeholder.com/70" alt="Parent">
                         </div>
                         <div class="author-info">
-                            <h4>Mrs. Johnson</h4>
-                            <p>Parent of Primary Student</p>
+                            <h4>Mr. Ahmed</h4>
+                            <p>Parent of Elementary Student</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial">
-                    <p class="testimonial-text">The school's commitment to eradicating examination malpractice while
-                        providing world-class education is truly remarkable. My children are learning with integrity and
-                        excellence.</p>
+                    <p class="testimonial-text">The school's serene environment and dedicated teachers have made a significant difference in my child's learning. He loves going to school and has shown remarkable improvement in both academics and character.</p>
                     <div class="testimonial-author">
                         <div class="author-image">
                             <img src="https://via.placeholder.com/70" alt="Parent">
                         </div>
                         <div class="author-info">
-                            <h4>Mr. Adebayo</h4>
+                            <h4>Mrs. Abdul</h4>
                             <p>Parent of Secondary Student</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial">
-                    <p class="testimonial-text">As an educator myself, I appreciate how Crystal Model Schools balances
-                        academic rigor with character development. The focus on "learning to excel" creates well-rounded
-                        individuals.</p>
+                    <p class="testimonial-text">As an educator myself, I appreciate how Al-Ihsan Schools balances academic rigor with Islamic values. The focus on developing the whole person creates well-rounded individuals prepared for future leadership.</p>
                     <div class="testimonial-author">
                         <div class="author-image">
                             <img src="https://via.placeholder.com/70" alt="Parent">
                         </div>
                         <div class="author-info">
-                            <h4>Dr. (Mrs) Okoro</h4>
+                            <h4>Dr. (Mrs) Ibrahim</h4>
                             <p>Parent & Educator</p>
                         </div>
                     </div>
@@ -1896,40 +2013,35 @@
     <section class="gallery">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Life at Crystal Model Schools</h2>
+                <h2>Life at Al-Ihsan Schools</h2>
             </div>
             <div class="gallery-container">
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80"
-                        alt="Classroom activities">
+                    <img src="{{ asset('school-images/chem_lab3.jpg') }}" alt="Science Laboratory">
                     <div class="gallery-overlay">
-                        <h4>Interactive Learning</h4>
+                        <h4>Science Labs</h4>
                     </div>
                 </div>
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                        alt="Students collaborating">
+                    <img src="{{ asset('school-images/ict_lab.jpg') }}" alt="ICT Lab">
                     <div class="gallery-overlay">
-                        <h4>Collaborative Learning</h4>
+                        <h4>Computer Lab</h4>
                     </div>
                 </div>
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
-                        alt="E-learning">
+                    <img src="{{ asset('school-images/ceo.webp') }}" alt="School Leadership">
                     <div class="gallery-overlay">
-                        <h4>E-Learning</h4>
+                        <h4>Our Leadership</h4>
                     </div>
                 </div>
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                        alt="School facilities">
+                    <img src="{{ asset('school-images/cross_section_students.jpg') }}" alt="School facilities">
                     <div class="gallery-overlay">
                         <h4>Modern Facilities</h4>
                     </div>
                 </div>
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500">
-                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                        alt="Academic excellence">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Academic excellence">
                     <div class="gallery-overlay">
                         <h4>Academic Excellence</h4>
                     </div>
@@ -1941,12 +2053,9 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2 data-aos="fade-up">Ready to Join the Crystal Model Schools Family?</h2>
-            <p data-aos="fade-up" data-aos-delay="100">Empower your child to excel with world-class education,
-                e-learning, and values that prepare them for success in an ever-changing world. Applications are now
-                open for all programs!</p>
-            <button class="btn" id="applyAdmissionBtn" data-aos="fade-up" data-aos-delay="200">Apply for
-                Admission</button>
+            <h2 data-aos="fade-up">Ready to Join the Al-Ihsan Schools Family?</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Empower your child with quality education that combines academic excellence with Islamic moral values. Applications are now open for all programs!</p>
+            <button class="btn" id="applyAdmissionBtn" data-aos="fade-up" data-aos-delay="200">Apply for Admission</button>
         </div>
     </section>
 
@@ -1955,9 +2064,8 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-about">
-                    <h3>About Crystal Model Schools</h3>
-                    <p>A world-class standard school with diversity in learning, grooming students from kindergarten to
-                        secondary education with a focus on e-learning and computer-based training.</p>
+                    <h3>About Al-Ihsan Schools</h3>
+                    <p>An Islamic faith-based Nursery, Elementary and Secondary school providing all-round high quality education of international standard with focus on spiritual and moral development.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1983,23 +2091,21 @@
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
-                            <p>Ajibaye Street, Off Erinle Street</p>
-                            <p>Gaa Akanbi, Ilorin, Nigeria</p>
-                            <p>Phone: 08065136880</p>
+                            <p>No. 8, Prof Nike Lawal street, Moselu area, Offa, Kwara State</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <div>
-                            <p>08065136880</p>
-                            <p></p>
+                            <p>08064220278</p>
+                            <p>08140612026</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <div>
-                            <p>info@crystalmodelschools.edu.ng</p>
-                            <p>admissions@crystalmodelschools.edu.ng</p>
+                            <p>info@alihsanschools.edu.ng</p>
+                            <p>admissions@alihsanschools.edu.ng</p>
                         </div>
                     </div>
                 </div>
@@ -2007,34 +2113,28 @@
                     <h3>Gallery</h3>
                     <div class="gallery-grid">
                         <div class="gallery-item-small">
-                            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80"
-                                alt="School Gallery">
+                            <img src="{{ asset('school-images/chem_lab.jpg') }}" alt="School Gallery">
                         </div>
                         <div class="gallery-item-small">
-                            <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                                alt="School Gallery">
+                            <img src="{{ asset('school-images/ict_lab.jpg') }}" alt="School Gallery">
                         </div>
                         <div class="gallery-item-small">
-                            <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
-                                alt="School Gallery">
+                            <img src="{{ asset('school-images/ict_lab2.jpg') }}" alt="School Gallery">
                         </div>
                         <div class="gallery-item-small">
-                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                                alt="School Gallery">
+                            <img src="{{asset('school-images/chem_lab3.jpg')}}" alt="School Gallery">
                         </div>
                         <div class="gallery-item-small">
-                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                                alt="School Gallery">
+                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="School Gallery">
                         </div>
                         <div class="gallery-item-small">
-                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                                alt="School Gallery">
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="School Gallery">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Crystal Model Schools. All Rights Reserved.</p>
+                <p>&copy; 2023 Al-Ihsan Schools. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -2044,46 +2144,39 @@
     <div class="modal" id="aboutModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>About Crystal Model Schools</h2>
+                <h2>About Al-Ihsan Schools</h2>
                 <button class="modal-close">&times;</button>
             </div>
             <div class="modal-body">
                 <h3>Our Story</h3>
-                <p>We have passion for a good standard education. We discovered the decay in our society through
-                    examination malpractice, and we glamor for a good education of children from all classes - from
-                    foundation which is kindergarten to secondary school certificate. Once they are groomed for world
-                    class standard, all forms of examination malpractice will be eradicated.</p>
-                <p>We are passionate about growing along with your class, not growing sackings in school.</p>
+                <p>Al-Ihsan Nursery, Elementary and Secondary School was approved for operation by the State Ministry of Education in September 2020 but officially opened to the public in October 2020.</p>
+                <p>The school is located in Moselu Area, Offa, Kwara State, along Igbonna road. The school is in a serene and quiet environment, far from the bustle and hustle of the city.</p>
 
                 <h3>Our Mission</h3>
-                <p>To get children good education background from kindergarten to secondary education in order to build
-                    them with standard background to eradicate illiteracy in our society.</p>
+                <p>To provide an all-round high quality education of international standard with focus on spiritual and moral development.</p>
 
                 <h3>Our Vision</h3>
-                <p>To groom students in a world standard-based education, for our society to be free from examination
-                    malpractice.</p>
+                <p>To develop well-rounded individuals who would be future leaders of the nation through an integrated curriculum that addresses intellectual, academic, spiritual, moral and physical growth.</p>
 
                 <h3>Our Values</h3>
-                <p>We provide world-class teaching and trust that we teach standard and current revised curriculum which
-                    we know our wards can face world-class competition at any level in our school.</p>
+                <p>At Al-Ihsan Schools, high achievement and a love of lifelong learning are fostered and encouraged by teachers working with pupils and students to:</p>
+                <ul>
+                    <li>Develop their self-esteem and confidence</li>
+                    <li>Develop a sense of independence</li>
+                    <li>Develop self-discipline</li>
+                    <li>Develop a variety of skills across all curriculum areas</li>
+                    <li>Achieve their full potential, both academically and spiritually</li>
+                    <li>Acquire necessary skills to become confident, responsible and independent people</li>
+                </ul>
 
                 <h3>Our Philosophy</h3>
-                <p>Our students are learning to excel.</p>
+                <p>Our students are learning to excel in both knowledge and character.</p>
 
                 <h3>Our Programs</h3>
-                <p>KG1-KG3, Basic 1-5, Junior School (3 years), Senior School (3 years)</p>
+                <p>Nursery, Elementary, Junior Secondary (3 years), Senior Secondary (3 years)</p>
 
                 <h3>Our Facilities</h3>
-                <p>Well-researched, world-class, state-of-the-art facilities including e-learning classrooms and
-                    computer labs.</p>
-
-                <h3>School Anthem</h3>
-                <p>Our school anthem reflects our commitment to excellence, self-discipline, and confidence in our
-                    students.</p>
-
-                <div style="margin-top: 2rem;">
-                    <button class="btn" id="viewAnthemPledgeBtn">View School Anthem</button>
-                </div>
+                <p>Well-researched, world-class facilities including science laboratories, computer lab, library, and sports facilities.</p>
             </div>
         </div>
     </div>
@@ -2097,34 +2190,30 @@
             </div>
             <div class="modal-body">
                 <h3>Comprehensive Educational Programs</h3>
-                <p>At Crystal Model Schools, we offer a continuum of educational programs designed to nurture students
-                    from their earliest years through to secondary education.</p>
+                <p>At Al-Ihsan Schools, we offer a continuum of educational programs designed to nurture students from their earliest years through to secondary education.</p>
 
-                <h4>Kindergarten (KG1-KG3)</h4>
-                <p>Our youngest learners are nurtured in a stimulating environment that encourages exploration and early
-                    development through age-appropriate activities and play-based learning.</p>
+                <h4>Nursery</h4>
+                <p>Our youngest learners are nurtured in a stimulating environment that encourages exploration and early development through age-appropriate activities and Islamic values.</p>
 
-                <h4>Primary (Basic 1-5)</h4>
-                <p>Developing academic excellence, critical thinking, and character through a comprehensive curriculum
-                    that balances core subjects with creative and physical education.</p>
+                <h4>Elementary</h4>
+                <p>Developing academic excellence, critical thinking, and character through a comprehensive curriculum that balances core subjects with Islamic education.</p>
 
                 <h4>Junior Secondary (3 years)</h4>
-                <p>Building on primary education with a broad-based curriculum that prepares students for senior
-                    secondary education and specialized subjects.</p>
+                <p>Building on elementary education with a broad-based curriculum that prepares students for senior secondary education and includes Islamic sciences.</p>
 
                 <h4>Senior Secondary (3 years)</h4>
-                <p>Preparing students for higher education and career paths with specialized programs, career guidance,
-                    and advanced academic opportunities.</p>
+                <p>Preparing students for higher education with specialized programs, career guidance, and advanced academic opportunities alongside Islamic education.</p>
 
-                <h3>Our Educational Approach</h3>
-                <p>Our curriculum focuses on world-class standards and current revised curriculum, providing students
-                    with the knowledge and skills needed to compete globally. We focus on:</p>
+                <h3>Our Curriculum</h3>
+                <p>We operate the national curriculum with Islamic values and perspectives incorporated to cater for the moral and spiritual needs of our students. Subjects offered include:</p>
                 <ul>
-                    <li>E-learning and computer-based training</li>
-                    <li>Diverse learning methodologies</li>
-                    <li>World-class teaching standards</li>
-                    <li>Eradication of examination malpractice</li>
-                    <li>Preparation for external CBT examinations</li>
+                    <li>Basic Science, Mathematics and Further Mathematics</li>
+                    <li>English, Computer Studies</li>
+                    <li>Physics, Biology, Chemistry</li>
+                    <li>Civic, Social Studies, Cultural and Creative Arts, History, Home Economics</li>
+                    <li>Business Studies, and Commercial subjects including Accounting, Economics, Commerce, Office Practice and Catering</li>
+                    <li>Literature, Quantitative and Verbal Reasoning</li>
+                    <li>Islamic Sciences: Qur'an, Quran memorization and recitation, tajweed, hadith, and Arabic</li>
                 </ul>
             </div>
         </div>
@@ -2139,41 +2228,41 @@
             </div>
             <div class="modal-body">
                 <h3>Join Our Community of Excellence</h3>
-                <p>We welcome students who are eager to learn and excel in a world-class educational environment. Our
-                    admissions process is designed to identify students who will thrive in our learning environment.</p>
+                <p>We welcome students who are eager to learn and excel in a nurturing Islamic educational environment. Our admissions process is designed to identify students who will thrive in our learning environment.</p>
+
+                <h3>Admission Policy</h3>
+                <p>Al-Ihsan school operates an open enrolling system; hence applications are accepted throughout the year. We have a comprehensive system to support student learning in every way and ensure the well-being of all in the community.</p>
 
                 <h3>Admission Process</h3>
                 <h4>Step 1: Inquiry</h4>
-                <p>Begin by contacting our admissions office or filling out our inquiry form. We'll provide you with
-                    detailed information about our programs and answer any questions you may have.</p>
+                <p>Begin by contacting our admissions office or filling out our inquiry form. We'll provide you with detailed information about our programs and answer any questions you may have.</p>
 
                 <h4>Step 2: School Visit</h4>
-                <p>Schedule a tour of our campus to experience our learning environment firsthand. You'll meet our
-                    dedicated staff and see our world-class facilities.</p>
+                <p>Schedule a tour of our campus to experience our learning environment firsthand. You'll meet our dedicated staff and see our facilities.</p>
 
                 <h4>Step 3: Application</h4>
-                <p>Complete the application form and submit the required documents, including previous academic records,
-                    birth certificate, and passport photographs.</p>
+                <p>Complete the application form and submit the required documents, including previous academic records, birth certificate, and passport photographs.</p>
 
                 <h4>Step 4: Assessment</h4>
-                <p>Depending on the program, your child may be invited for an assessment or interaction session to help
-                    us understand their learning needs and potential.</p>
+                <p>For admission to any level, an admission test is required. The decision to admit is based on a careful examination of the student's ability to achieve success.</p>
 
                 <h4>Step 5: Admission Decision</h4>
-                <p>Our admissions team will review the application and inform you of the decision. If accepted, you'll
-                    receive an offer letter with further instructions.</p>
+                <p>Our admissions team will review the application and inform you of the decision. If accepted, you'll receive an offer letter with further instructions.</p>
 
                 <h4>Step 6: Enrollment</h4>
-                <p>Complete the enrollment process by submitting the required fees and documents. Your child is now
-                    ready to begin their journey at Crystal Model Schools!</p>
+                <p>Complete the enrollment process by submitting the required fees and documents. Your child is now ready to begin their journey at Al-Ihsan Schools!</p>
 
-                <h3>Programs Offered</h3>
+                <h3>Required Documents</h3>
                 <ul>
-                    <li>Kindergarten (KG1-KG3)</li>
-                    <li>Primary (Basic 1-5)</li>
-                    <li>Junior Secondary (3 years)</li>
-                    <li>Senior Secondary (3 years)</li>
+                    <li>Completed Application Form</li>
+                    <li>The most recent one or two years' school records</li>
+                    <li>Letter of recommendation from the teacher of the last year attended</li>
+                    <li>Two recent Passport photographs</li>
+                    <li>Payment of a non-refundable application fee</li>
                 </ul>
+
+                <h3>Probationary Admission</h3>
+                <p>Where the student's score on the entrance exam is low, the school may decide to admit him/her on a probationary status for one semester to ensure that the placement is right and to allow time for improvement and adjustment.</p>
 
                 <div style="margin-top: 2rem;">
                     <button class="btn" id="startApplicationBtn">Start Application</button>
@@ -2191,49 +2280,28 @@
             </div>
             <div class="modal-body">
                 <h3>World-Class Learning Environment</h3>
-                <p>At Crystal Model Schools, we've created a stimulating and safe environment where students can learn,
-                    grow, and develop into well-rounded individuals. Our facilities are designed to support our
-                    educational philosophy and enhance the learning experience.</p>
+                <p>At Al-Ihsan Schools, we've created a stimulating and safe environment where students can learn, grow, and develop into well-rounded individuals. Our facilities are designed to support our educational philosophy and enhance the learning experience.</p>
 
                 <h3>Academic Facilities</h3>
                 <h4>Modern Classrooms</h4>
-                <p>Our bright, well-equipped classrooms are designed to inspire learning and collaboration. Each
-                    classroom is equipped with modern teaching aids and resources.</p>
+                <p>Our bright, well-equipped classrooms are designed to inspire learning and collaboration. Each classroom is equipped with modern teaching aids and resources.</p>
 
-                <h4>E-Learning Labs</h4>
-                <p>State-of-the-art computer labs with high-speed internet ensure our students develop essential digital
-                    literacy skills and are prepared for computer-based testing.</p>
+                <h4>Science Laboratories</h4>
+                <p>Three state-of-the-art science laboratories - one for chemistry, one for biology and one for physics and agriculture. This is where students learn the practical aspect of what they were taught in class.</p>
+
+                <h4>Computer Laboratory</h4>
+                <p>A computer laboratory is available for the use of students for practice and application of what is taught in the classroom. Students get hands-on experience in the use of computers.</p>
 
                 <h4>Library and Resource Center</h4>
-                <p>Our library is a treasure trove of knowledge with a diverse collection of books, digital resources,
-                    and comfortable reading spaces that support research and leisure reading.</p>
-
-                <h3>Creative and Performing Arts Facilities</h3>
-                <h4>Art Studios</h4>
-                <p>Spacious art studios equipped with a variety of materials allow students to explore painting,
-                    drawing, sculpture, and crafts.</p>
-
-                <h4>Music and Drama Rooms</h4>
-                <p>Dedicated spaces for music and drama activities help students develop their creative talents and
-                    self-expression.</p>
+                <p>The school has a well-stocked library where students have access to a variety of books ranging from science, technology, and business studies, to history, literature, agriculture and a host of others.</p>
 
                 <h3>Sports and Physical Development</h3>
-                <h4>Sports Fields</h4>
-                <p>Our campus includes well-maintained fields for various sports, promoting physical fitness, teamwork,
-                    and healthy competition.</p>
-
-                <h4>Playgrounds</h4>
-                <p>Age-appropriate playgrounds with safe, modern equipment provide spaces for younger children to
-                    develop motor skills and socialize through play.</p>
+                <h4>Sports Facilities</h4>
+                <p>We provide excellent sports facilities including a well-kept beautiful green football field, one of the best in the town. There are also facilities for volleyball, table tennis, and field and track.</p>
 
                 <h3>Specialized Facilities</h3>
-                <h4>Science Laboratories</h4>
-                <p>Well-equipped laboratories provide hands-on learning experiences for students, allowing them to
-                    explore scientific concepts through practical experiments.</p>
-
-                <h4>Multipurpose Hall</h4>
-                <p>A spacious hall for assemblies, performances, and special events that bring our school community
-                    together.</p>
+                <h4>Islamic Studies Facilities</h4>
+                <p>Dedicated spaces for Quran memorization and recitation, tajweed, and hadith studies to support our Islamic curriculum.</p>
             </div>
         </div>
     </div>
@@ -2248,43 +2316,37 @@
             <div class="modal-body">
                 <div class="gallery-container">
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80"
-                            alt="Classroom activities">
+                        <img src="{{ asset('school-images/chem_lab.jpg') }}" alt="Chemistry Laboratory">
                         <div class="gallery-overlay">
-                            <h4>Interactive Learning</h4>
+                            <h4>Chemistry Lab</h4>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                            alt="Students collaborating">
+                        <img src="{{ asset('school-images/ict_lab.jpg') }}" alt="ICT Lab">
                         <div class="gallery-overlay">
-                            <h4>Collaborative Projects</h4>
+                            <h4>Computer Lab</h4>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
-                            alt="E-learning">
+                        <img src="{{ asset('school-images/check_lab2.jpg') }}" alt="School Leadership">
                         <div class="gallery-overlay">
-                            <h4>E-Learning</h4>
+                            <h4>Our Leadership</h4>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                            alt="School facilities">
+                        <img src="{{asset('school-images/chem_lab3.jpg')}}" alt="School facilities">
                         <div class="gallery-overlay">
                             <h4>Modern Facilities</h4>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                            alt="Academic excellence">
+                        <img src="{{asset('school-images/cross_section_students.jpg')}}" alt="Academic excellence">
                         <div class="gallery-overlay">
                             <h4>Academic Excellence</h4>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                            alt="School event">
+                        <img src="{{asset('school-images/ict_lab2.jpg')}}" alt="School event">
                         <div class="gallery-overlay">
                             <h4>School Events</h4>
                         </div>
@@ -2303,8 +2365,7 @@
             </div>
             <div class="modal-body">
                 <h3>Get in Touch</h3>
-                <p>We'd love to hear from you! Whether you have questions about our programs, want to schedule a visit,
-                    or need more information, our team is here to help.</p>
+                <p>We'd love to hear from you! Whether you have questions about our programs, want to schedule a visit, or need more information, our team is here to help.</p>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
                     <div>
@@ -2312,23 +2373,21 @@
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
-                                <p>Ajibaye Street, Off Erinle Street</p>
-                                <p>Gaa Akanbi, Ilorin, Nigeria</p>
-                                <p>Phone: 08065136880</p>
+                                <p>No. 8, Prof Nike Lawal street, Moselu area, Offa, Kwara State</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
                             <div>
-                                <p>08065136880</p>
-                                
+                                <p>08064220278</p>
+                                <p>08140612026</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
                             <div>
-                                <p>info@crystalmodelschools.edu.ng</p>
-                                <p>admissions@crystalmodelschools.edu.ng</p>
+                                <p>info@alihsanschools.edu.ng</p>
+                                <p>admissions@alihsanschools.edu.ng</p>
                             </div>
                         </div>
                     </div>
@@ -2357,82 +2416,11 @@
                     </div>
                 </div>
 
-                <h3>Our Location</h3>
-                <div
-                    style="height: 300px; background-color: #f1f1f1; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-top: 1rem;">
-                    <p><i class="fas fa-map-marked-alt"
-                            style="font-size: 2rem; color: var(--primary-color); margin-right: 1rem;"></i> Map of
-                        Crystal Model Schools Location</p>
-                </div>
-            </div>
-        </div>
-    </div>
+                <h3>School Hours</h3>
+                <p>School hours start in the morning at 7:50 am with assembly and ends at 3:30 pm every day except Fridays where school ends early to allow time for the Friday jumat service.</p>
 
-    <!-- Anthem Modal -->
-    <div class="modal" id="anthemPledgeModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>School Anthem</h2>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="anthem-pledge-container">
-                    <div class="anthem">
-                        <h3>School Anthem</h3>
-                        <div class="anthem-content">
-                            <p>Crystal Model Schools is the best school,<br>
-                                is the best school in the world,<br>
-                                greater heights and mind exploits<br>
-                                is the portion of our school</p>
-
-                            <p>Self discipline and self confidence<br>
-                                is the moral of our school,<br>
-                                knowledge is light we learn to excel<br>
-                                we are light and we shine bright</p>
-
-                            <p>Crystal Model Schools is the best school,<br>
-                                is the best school in the world,<br>
-                                greater heights and mind exploits<br>
-                                is the portion of our school</p>
-
-                            <p>We are the learners of Crystal Model Schools,<br>
-                                We are the learners of mercy dew,<br>
-                                we learn and create peace of mind<br>
-                                come to us you will know that we are good,<br>
-                                we are proud of Mercy Dew</p>
-
-                            <p>We live as one and share peace and love<br>
-                                learning to excel is the best thing<br>
-                                come to us you we know that we are good<br>
-                                we are proud of Mercy Dew</p>
-
-                            <p>We are proud !<br>
-                                We are proud !!<br>
-                                We are proud!!!</p>
-                        </div>
-                    </div>
-                    <div class="pledge">
-                        <h3>Our Philosophy</h3>
-                        <div class="pledge-content">
-                            <p>At Crystal Model Schools, our philosophy is simple yet powerful: <strong>Our students are
-                                    learning to excel</strong>.</p>
-
-                            <p>This guiding principle shapes everything we do, from our curriculum design to our
-                                teaching methodologies. We believe that every child has the potential to achieve
-                                greatness when provided with the right environment, resources, and guidance.</p>
-
-                            <p>Our motto "WE LEARN TO EXCEL" reflects our commitment to:</p>
-                            <ul>
-                                <li>Providing diverse learning opportunities</li>
-                                <li>Implementing world-class teaching standards</li>
-                                <li>Embracing technology in education</li>
-                                <li>Eradicating examination malpractice</li>
-                                <li>Building a solid educational foundation</li>
-                                <li>Preparing students for global competition</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <h3>School Bus Service</h3>
+                <p>There is a bus service to convey students and pupils to and from school at moderate price. The bus service is optional. Parents may choose to make other transport arrangements for their children or wards.</p>
             </div>
         </div>
     </div>
@@ -2445,9 +2433,8 @@
                 <button class="modal-close">&times;</button>
             </div>
             <div class="modal-body">
-                <h3>Apply to Crystal Model Schools</h3>
-                <p>Please complete the form below to apply for admission. All fields marked with an asterisk (*) are
-                    required.</p>
+                <h3>Apply to Al-Ihsan Schools</h3>
+                <p>Please complete the form below to apply for admission. All fields marked with an asterisk (*) are required.</p>
 
                 <form id="applicationForm">
                     <div class="form-group">
@@ -2474,14 +2461,12 @@
                         <label for="program">Program Applying For *</label>
                         <select id="program" class="form-control" required>
                             <option value="">Select Program</option>
-                            <option value="kg1">KG1</option>
-                            <option value="kg2">KG2</option>
-                            <option value="kg3">KG3</option>
-                            <option value="basic1">Basic 1</option>
-                            <option value="basic2">Basic 2</option>
-                            <option value="basic3">Basic 3</option>
-                            <option value="basic4">Basic 4</option>
-                            <option value="basic5">Basic 5</option>
+                            <option value="nursery">Nursery</option>
+                            <option value="elementary1">Elementary 1</option>
+                            <option value="elementary2">Elementary 2</option>
+                            <option value="elementary3">Elementary 3</option>
+                            <option value="elementary4">Elementary 4</option>
+                            <option value="elementary5">Elementary 5</option>
                             <option value="jss1">JSS 1</option>
                             <option value="jss2">JSS 2</option>
                             <option value="jss3">JSS 3</option>
@@ -2519,11 +2504,8 @@
 
                     <div class="form-group">
                         <div style="display: flex; align-items: flex-start;">
-                            <input type="checkbox" id="agreement" style="margin-right: 10px; margin-top: 5px;"
-                                required>
-                            <label for="agreement">I certify that the information provided is accurate and complete. I
-                                understand that any false information may result in disqualification of the application.
-                                *</label>
+                            <input type="checkbox" id="agreement" style="margin-right: 10px; margin-top: 5px;" required>
+                            <label for="agreement">I certify that the information provided is accurate and complete. I understand that any false information may result in disqualification of the application. *</label>
                         </div>
                     </div>
 
@@ -2543,9 +2525,8 @@
                 <button class="modal-close">&times;</button>
             </div>
             <div class="modal-body">
-                <h3>Experience Crystal Model Schools</h3>
-                <p>We invite you to visit our campus and experience our learning environment. During your visit, you'll
-                    have the opportunity to tour our facilities, observe classes, and meet our dedicated staff.</p>
+                <h3>Experience Al-Ihsan Schools</h3>
+                <p>We invite you to visit our campus and experience our learning environment. During your visit, you'll have the opportunity to tour our facilities, observe classes, and meet our dedicated staff.</p>
 
                 <form id="visitForm">
                     <div class="form-group">
@@ -2602,22 +2583,12 @@
         <div class="drawer-content">
             <ul class="drawer-menu">
                 <li><a href="#" class="drawer-link" data-page="home"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#" class="drawer-link" data-page="about"><i class="fas fa-info-circle"></i> About
-                        Us</a>
-                </li>
-                <li><a href="#" class="drawer-link" data-page="programs"><i class="fas fa-book"></i>
-                        Programs</a></li>
-                <li><a href="#" class="drawer-link" data-page="admissions"><i
-                            class="fas fa-user-graduate"></i>
-                        Admissions</a></li>
-                <li><a href="#" class="drawer-link" data-page="facilities"><i class="fas fa-school"></i>
-                        Facilities</a>
-                </li>
-                <li><a href="#" class="drawer-link" data-page="gallery"><i class="fas fa-images"></i>
-                        Gallery</a></li>
-                <li><a href="#" class="drawer-link" data-page="contact"><i class="fas fa-envelope"></i>
-                        Contact Us</a>
-                </li>
+                <li><a href="#" class="drawer-link" data-page="about"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="#" class="drawer-link" data-page="programs"><i class="fas fa-book"></i> Programs</a></li>
+                <li><a href="#" class="drawer-link" data-page="admissions"><i class="fas fa-user-graduate"></i> Admissions</a></li>
+                <li><a href="#" class="drawer-link" data-page="facilities"><i class="fas fa-school"></i> Facilities</a></li>
+                <li><a href="#" class="drawer-link" data-page="gallery"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="#" class="drawer-link" data-page="contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
                 <li><a href="#" target="_blank"><i class="fas fa-sign-in-alt"></i> Student Portal</a></li>
             </ul>
         </div>
@@ -2654,6 +2625,14 @@
         const sheetTitle = document.getElementById('sheetTitle');
         const sheetContent = document.getElementById('sheetContent');
 
+        // Carousel Elements
+        const carouselSlides = document.querySelectorAll('.carousel-slide');
+        const carouselIndicators = document.querySelectorAll('.carousel-indicator');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        let slideInterval;
+
         // Modal Elements
         const modals = document.querySelectorAll('.modal');
         const modalCloseBtns = document.querySelectorAll('.modal-close');
@@ -2669,7 +2648,6 @@
         const discoverStoryBtn = document.getElementById('discoverStoryBtn');
         const applyAdmissionBtn = document.getElementById('applyAdmissionBtn');
         const startApplicationBtn = document.getElementById('startApplicationBtn');
-        const viewAnthemPledgeBtn = document.getElementById('viewAnthemPledgeBtn');
 
         // Age Card Elements
         const ageCards = document.querySelectorAll('.age-card');
@@ -2693,6 +2671,72 @@
         const testimonials = document.querySelectorAll('.testimonial');
         const navDots = document.querySelectorAll('.nav-dot');
         let currentTestimonial = 0;
+
+        // Carousel Functions
+        function showSlide(index) {
+            // Hide all slides
+            carouselSlides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remove active class from all indicators
+            carouselIndicators.forEach(indicator => {
+                indicator.classList.remove('active');
+            });
+            
+            // Show the selected slide
+            carouselSlides[index].classList.add('active');
+            carouselIndicators[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentSlide + 1) % carouselSlides.length;
+            showSlide(nextIndex);
+        }
+
+        function prevSlide() {
+            let prevIndex = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
+            showSlide(prevIndex);
+        }
+
+        function startCarousel() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopCarousel() {
+            clearInterval(slideInterval);
+        }
+
+        // Initialize carousel
+        showSlide(0);
+        startCarousel();
+
+        // Carousel event listeners
+        nextBtn.addEventListener('click', () => {
+            stopCarousel();
+            nextSlide();
+            startCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            stopCarousel();
+            prevSlide();
+            startCarousel();
+        });
+
+        carouselIndicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                stopCarousel();
+                showSlide(index);
+                startCarousel();
+            });
+        });
+
+        // Pause carousel on hover
+        const heroSection = document.querySelector('.hero');
+        heroSection.addEventListener('mouseenter', stopCarousel);
+        heroSection.addEventListener('mouseleave', startCarousel);
 
         // Mobile Menu Toggle
         mobileMenuBtn.addEventListener('click', () => {
@@ -2784,13 +2828,13 @@
 
             switch (page) {
                 case 'about':
-                    title = 'About Crystal Model Schools';
+                    title = 'About Al-Ihsan Schools';
                     content = `
-                        <p>Crystal Model Schools is a world-class standard school with diversity in learning, grooming students from kindergarten to secondary education with a focus on e-learning and computer-based training.</p>
+                        <p>Al-Ihsan Schools is an Islamic faith-based Nursery, Elementary and Secondary school providing all-round high quality education of international standard with focus on spiritual and moral development.</p>
                         <h4>Our Mission</h4>
-                        <p>To get children good education background from kindergarten to secondary education in order to build them with standard background to eradicate illiteracy in our society.</p>
+                        <p>To provide an all-round high quality education of international standard with focus on spiritual and moral development.</p>
                         <h4>Our Vision</h4>
-                        <p>To groom students in a world standard-based education, for our society to be free from examination malpractice.</p>
+                        <p>To develop well-rounded individuals who would be future leaders of the nation.</p>
                         <button class="btn" id="aboutMoreBtn">Learn More</button>
                     `;
                     break;
@@ -2800,8 +2844,8 @@
                         <p>We offer a continuum of educational programs designed to nurture students from their earliest years through to secondary education.</p>
                         <h4>Programs Offered</h4>
                         <ul>
-                            <li>Kindergarten (KG1-KG3)</li>
-                            <li>Primary (Basic 1-5)</li>
+                            <li>Nursery</li>
+                            <li>Elementary</li>
                             <li>Junior Secondary (3 years)</li>
                             <li>Senior Secondary (3 years)</li>
                         </ul>
@@ -2811,7 +2855,7 @@
                 case 'admissions':
                     title = 'Admissions';
                     content = `
-                        <p>Join our community of excellence and empower your child to learn and excel in a world-class educational environment.</p>
+                        <p>Join our community of excellence and empower your child with quality education that combines academic excellence with Islamic moral values.</p>
                         <h4>Admission Process</h4>
                         <ol>
                             <li>Inquiry</li>
@@ -2832,11 +2876,11 @@
                         <h4>Key Facilities</h4>
                         <ul>
                             <li>Modern Classrooms</li>
-                            <li>E-Learning Labs</li>
-                            <li>Library & Resource Center</li>
                             <li>Science Laboratories</li>
-                            <li>Sports Fields</li>
-                            <li>Art Studios</li>
+                            <li>Computer Laboratory</li>
+                            <li>Library & Resource Center</li>
+                            <li>Sports Facilities</li>
+                            <li>Islamic Studies Facilities</li>
                         </ul>
                         <button class="btn" id="facilitiesMoreBtn">Learn More</button>
                     `;
@@ -2845,9 +2889,9 @@
                     title = 'Photo Gallery';
                     content = `
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="School" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
-                            <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Students" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
-                            <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="E-learning" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+                            <img src="{{ asset('school-images/chem_lab.png') }}" alt="School" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+                            <img src="{{ asset('school-images/ict_lab.jpg') }}" alt="Students" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+                            <img src="{{ asset('school-images/ceo.png') }}" alt="E-learning" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
                             <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Facilities" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
                         </div>
                         <button class="btn" id="galleryMoreBtn">View Full Gallery</button>
@@ -2859,23 +2903,21 @@
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
-                                <p>3 Sofoluw Street, Off Lajorin Road</p>
-                                <p>Behind PS General Drug Center</p>
-                                <p>Muritala Way, Sabo Oke, Ilorin, Kwara State</p>
+                                <p>No. 8, Prof Nike Lawal street, Moselu area, Offa, Kwara State</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
                             <div>
-                                <p>08065136880</p>
-                                <p></p>
+                                <p>08064220278</p>
+                                <p>08140612026</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
                             <div>
-                                <p>info@crystalmodelschools.edu.ng</p>
-                                <p>admissions@crystalmodelschools.edu.ng</p>
+                                <p>info@alihsanschools.edu.ng</p>
+                                <p>admissions@alihsanschools.edu.ng</p>
                             </div>
                         </div>
                         <button class="btn" id="contactMoreBtn">Send Message</button>
@@ -2999,11 +3041,6 @@
             openModal('applicationModal');
         });
 
-        viewAnthemPledgeBtn.addEventListener('click', () => {
-            closeModal();
-            openModal('anthemPledgeModal');
-        });
-
         // Age Card Click Handlers
         ageCards.forEach(card => {
             card.addEventListener('click', () => {
@@ -3047,7 +3084,7 @@
                 <div style="text-align: center; padding: 2rem;">
                     <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success-color); margin-bottom: 1rem;"></i>
                     <h3>Message Sent Successfully!</h3>
-                    <p>Thank you for contacting Crystal Model Schools. We have received your message and will get back to you shortly.</p>
+                    <p>Thank you for contacting Al-Ihsan Schools. We have received your message and will get back to you shortly.</p>
                     <button class="btn" onclick="closeModal()">Close</button>
                 </div>
             `;
@@ -3061,7 +3098,7 @@
                 <div style="text-align: center; padding: 2rem;">
                     <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success-color); margin-bottom: 1rem;"></i>
                     <h3>Application Submitted Successfully!</h3>
-                    <p>Thank you for applying to Crystal Model Schools. We have received your application and will contact you soon with the next steps.</p>
+                    <p>Thank you for applying to Al-Ihsan Schools. We have received your application and will contact you soon with the next steps.</p>
                     <button class="btn" onclick="closeModal()">Close</button>
                 </div>
             `;
@@ -3075,7 +3112,7 @@
                 <div style="text-align: center; padding: 2rem;">
                     <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success-color); margin-bottom: 1rem;"></i>
                     <h3>Visit Scheduled Successfully!</h3>
-                    <p>Thank you for scheduling a visit to Crystal Model Schools. We have received your request and will confirm your visit shortly.</p>
+                    <p>Thank you for scheduling a visit to Al-Ihsan Schools. We have received your request and will confirm your visit shortly.</p>
                     <button class="btn" onclick="closeModal()">Close</button>
                 </div>
             `;
