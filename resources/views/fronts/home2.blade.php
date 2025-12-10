@@ -1895,7 +1895,7 @@
     </section>
 
     <!-- Anthem and Pledge Section -->
-    <section class="anthem-pledge">
+    {{-- <section class="anthem-pledge">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
                 <h2>School Anthem & Philosophy</h2>
@@ -1955,7 +1955,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Testimonials Section -->
     <section class="testimonials">
