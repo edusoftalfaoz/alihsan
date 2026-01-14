@@ -1608,7 +1608,8 @@
                     <li><a href="#" class="nav-link" data-page="facilities">Facilities</a></li>
                     <li><a href="#" class="nav-link" data-page="gallery">Gallery</a></li>
                     <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
-                    <li><a href="/student/login">Student Portal</a></li>
+                    <li><a href="/student/login"> Portal</a></li>
+                    <li><a href="https://mail.hostinger.com/v2/mailboxes/INBOX">Webmail</a></li>
                 </ul>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
@@ -2083,7 +2084,8 @@
                         <li><a href="#" class="footer-link" data-page="facilities">Facilities</a></li>
                         <li><a href="#" class="footer-link" data-page="gallery">Photo Gallery</a></li>
                         <li><a href="#" class="footer-link" data-page="contact">Contact Us</a></li>
-                        <li><a href="/student/login">Student Portal</a></li>
+                        <li><a href="/student/login"> Portal</a></li>
+                        <li><a href="https://mail.hostinger.com/v2/mailboxes/INBOX">Webmail</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -2589,7 +2591,8 @@
                 <li><a href="#" class="drawer-link" data-page="facilities"><i class="fas fa-school"></i> Facilities</a></li>
                 <li><a href="#" class="drawer-link" data-page="gallery"><i class="fas fa-images"></i> Gallery</a></li>
                 <li><a href="#" class="drawer-link" data-page="contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
-                <li><a href="/student/login"><i class="fas fa-sign-in-alt"></i> Student Portal</a></li>
+                <li><a href="/student/login"><i class="fas fa-sign-in-alt"></i> Portal</a></li>
+                <li><a href="https://mail.hostinger.com/v2/mailboxes/INBOX"><i class="fas fa-sign-in-alt"></i> Webmail</a></li>
             </ul>
         </div>
     </div>

@@ -6,6 +6,7 @@ use App\Filament\Student\Pages\StudentCustomDashboard;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -34,6 +35,13 @@ class StudentPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Purple,
 
+            ])
+            ->navigationItems([
+                NavigationItem::make('Elearning')
+                    ->url('https://elearn.education.gov.ng/', shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-academic-cap')
+                    ->visible(fn() => true)
+                    ->sort(100),
             ])
             ->discoverResources(in: app_path('Filament/Student/Resources'), for: 'App\\Filament\\Student\\Resources')
             ->discoverPages(in: app_path('Filament/Student/Pages'), for: 'App\\Filament\\Student\\Pages')
