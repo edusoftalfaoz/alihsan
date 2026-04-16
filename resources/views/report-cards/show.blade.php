@@ -215,6 +215,9 @@
                             <div class="text-center">
                                 <h2 class="font-bold" style="font-size: 2.7rem;">{{ $schoolDetails['school_name'] }}
                                 </h2>
+                                <p><b>Address: </b> {{ $record->section_address ?? $schoolDetails['school_address'] }}
+                                </p>
+                                <p><b>Phone:</b> {{ $schoolDetails['school_phone'] }}</p>
                                 <p class="detail-item"><span class="bold"
                                         style="font-weight: 600; color:darkmagenta;">{{ $record->name }}</span></p>
                             </div>
@@ -634,13 +637,6 @@
 
                             <table style="width: 100%; margin-top:30px;">
                                 <tr>
-                                    <td colspan="12" style="padding:15px;">
-                                        <div>
-                                            {{ $record->teacher->name ?? '' }}
-                                            <br>
-                                            <b><cite>Class Teacher</cite></b>
-                                        </div>
-                                    </td>
                                     <td>
                                         <div style="padding:15px;">
                                             {{-- Principal signature image --}}
