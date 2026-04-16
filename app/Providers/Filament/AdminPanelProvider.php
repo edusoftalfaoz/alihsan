@@ -35,6 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+
             ->sidebarCollapsibleOnDesktop()
             ->colors([
                 'primary' => Color::Red,
@@ -42,7 +43,8 @@ class AdminPanelProvider extends PanelProvider
                 'warning' => Color::Yellow,
                 'purple' => Color::Purple,
             ])
-            ->defaultThemeMode(ThemeMode::Dark)
+            ->defaultThemeMode(ThemeMode::Light)
+            ->darkMode(false)
             ->brandName($schoolDetails['school_name'])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

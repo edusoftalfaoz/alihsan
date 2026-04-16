@@ -43,20 +43,19 @@ class ReportCardPdfController extends Controller
 
 
     public function downloadReportCards($recordId)
-{
-    $record = ResultRoot::findOrFail($recordId); 
-    $resultUploads = ResultUpload::where('result_root_id', $recordId)->get();
-    $schoolDetails = getSchoolDetails();
+    {
+        $record = ResultRoot::findOrFail($recordId);
+        $resultUploads = ResultUpload::where('result_root_id', $recordId)->get();
+        $schoolDetails = getSchoolDetails();
 
-   
 
-    $pdf = Pdf::loadView('pdf.report-cards', compact(
-        'record', 
-        'resultUploads', 
-        'schoolDetails', 
-    ));
 
-    return $pdf->download('report-cards.pdf');
-}
+        $pdf = Pdf::loadView('pdf.report-cards', compact(
+            'record',
+            'resultUploads',
+            'schoolDetails',
+        ));
 
+        return $pdf->download('report-cards.pdf');
+    }
 }
